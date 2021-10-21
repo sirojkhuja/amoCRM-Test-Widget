@@ -1,0 +1,107 @@
+<!--
+	!!!
+	amocrm_period - GET-параметр отвечающий, за выбранный период на рабочем столе в amoCRM
+	возможные значения day/week/month
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>amoCRM Test Dashboard Widget</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="//fonts.googleapis.com/css?family=Open+Sans:400,300&subset=latin,cyrillic-ext"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="//fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic-ext"
+        />
+
+        <style type="text/css">
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                text-rendering: geometricPrecision;
+                -webkit-font-smoothing: antialiased;
+            }
+            html,
+            body {
+                padding: 0;
+                margin: 0;
+                font-family: "PT Sans";
+                color: #2e3640;
+            }
+
+            .cell-wrapper {
+                width: 150px;
+                height: 170px;
+                padding: 5px;
+            }
+
+            .cell-wrapper__caption {
+                font-size: 1.1em;
+                text-align: center;
+            }
+
+            .cell-wrapper__droplists {
+                width: inherit;
+                padding: 10px;
+            }
+
+            .droplist {
+                width: 90%;
+                padding: 5px 10px;
+                margin-bottom: 15px;
+            }
+
+            label {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cell-wrapper">
+            <!-- Название виджета -->
+            <div class="cell-wrapper__caption">Тестовый виджет</div>
+
+            <div class="cell-wrapper__droplists">
+                <label for="car-names">Car Manufacturers</label>
+                <select
+                    class="droplist"
+                    name="car-names"
+                    id="car-names"
+                    onchange="changeModels(this)"
+                >
+                    <option value="Nissan">Nissan</option>
+                    <option value="Toyota">Toyota</option>
+                </select>
+                <br />
+                <label for="car-models">Car Models</label>
+                <select
+                    class="droplist"
+                    name="car-models"
+                    id="car-models"
+                ></select>
+            </div>
+        </div>
+
+        <script>
+            let models = document.getElementById("car-models");
+            let carsModels = {
+                Nissan: ["X trail", "Qashkay"],
+                Toyota: ["Rav4", "Camry"],
+            };
+            const changeModels = (e) => {
+                models.innerHTML = carsModels[e.value]
+                    .map(
+                        (model) => `<option value="${model}">${model}</option>`
+                    )
+                    .join("");
+            };
+            changeModels({ value: "Nissan" });
+        </script>
+    </body>
+</html>
